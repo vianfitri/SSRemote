@@ -20,6 +20,8 @@ const byte slaveAddress[5] = {'S','s','T','M','U'};
 uint8_t stateBtn = 0x0;
 
 void setup() {
+  Serial.begin(9600);
+
   // put your setup code here, to run once:
   pinMode(bt1, INPUT_PULLUP);
   pinMode(bt2, INPUT_PULLUP);
@@ -33,5 +35,8 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  stateBtn = stateBtn & !digitalRead(bt1);
+  //stateBtn = stateBtn & (!digitalRead(bt1) << 0);
+  stateBtn = stateBtn & (1 << 0);
+
+  Serial.println(stateBtn);
 }
