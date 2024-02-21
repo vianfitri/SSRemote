@@ -23,9 +23,18 @@ uint32_t message = 0x0;
 void ButtonReading();
 void MapButton();
 
+RF24 radio(CE, CSN);
+
 void setup() {
   Serial.begin(9600);
 
+  // setup radio
+  radio.begin();
+  radio.setDataRate(RF24_250KBPS);
+  radio.setRetries(3,5); // delay, count
+  radio.printDetails();
+  radio.openWritingPipe(slaveAddress);
+  
   // put your setup code here, to run once:
   pinMode(bt1, INPUT_PULLUP);
   pinMode(bt2, INPUT_PULLUP);
