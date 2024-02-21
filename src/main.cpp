@@ -33,5 +33,5 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  stateBtn = stateBtn & !digitalRead(bt0);
+  stateBtn = stateBtn & !digitalRead(bt1);
 }
