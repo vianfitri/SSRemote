@@ -18,8 +18,10 @@
 const byte slaveAddress[5] = {'S','s','T','M','U'};
 
 uint8_t stateBtn = 0x0;
+uint32_t message = 0x0;
 
 void ButtonReading();
+void MapButton();
 
 void setup() {
   Serial.begin(9600);
@@ -41,7 +43,11 @@ void loop() {
   // populate button
   ButtonReading();
 
-  Serial.println(stateBtn);
+  // mapping state button to message
+  MapButton();
+
+  // serial print
+  Serial.println(message, HEX);
 }
 
 void ResetButton(){
@@ -61,4 +67,40 @@ void ButtonReading(){
   stateBtn |= (!digitalRead(bt6) << 5);
   stateBtn |= (!digitalRead(bt7) << 6);
   stateBtn |= (!digitalRead(bt8) << 7);
+}
+
+void MapButton(){
+  message = 0x0;
+
+  if (stateBtn == 1) {
+    message = 0xF30CFF00;
+  }
+
+  if (stateBtn == 2) {
+    message = 0xE718FF00;
+  }
+
+  if (stateBtn == 4) {
+    message = 0xA15EFF00;
+  }
+
+  if (stateBtn == 8) {
+    message = 0xF708FF00;
+  }
+
+  if (stateBtn == 16) {
+    message = 0xE31CFF00;
+  }
+
+  if (stateBtn == 32) {
+    message = 0xA55AFF00;
+  }
+
+  if (stateBtn == 64) {
+    message = 0xAD52FF00;
+  }
+
+  if (stateBtn == 128) {
+    message = 0xBD42FF00;
+  }
 }
