@@ -60,10 +60,10 @@ void loop() {
     radio.write(&message, sizeof(message));
   }
 
-  delay(20);
-  
   // serial print
-  //Serial.println(message, HEX);
+  Serial.println(message, HEX);
+
+  delay(20);
 }
 
 void ResetButton(){
