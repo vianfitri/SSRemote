@@ -61,7 +61,7 @@ void loop() {
   }
 
   // serial print
-  Serial.println(message, HEX);
+  //Serial.println(message, HEX);
 
   delay(20);
 }
