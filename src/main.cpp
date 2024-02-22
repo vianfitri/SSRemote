@@ -55,8 +55,15 @@ void loop() {
   // mapping state button to message
   MapButton();
 
+  // send data to receiver
+  if (message != 0x0){
+    radio.write(&message, sizeof(message));
+  }
+
+  delay(20);
+  
   // serial print
-  Serial.println(message, HEX);
+  //Serial.println(message, HEX);
 }
 
 void ResetButton(){
